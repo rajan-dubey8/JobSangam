@@ -3,28 +3,40 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../main";
+import Loading from "../Layout/Loading"; // Ensure this path is correct
+
 const JobDetails = () => {
   const { id } = useParams();
   const [job, setJob] = useState({});
+  const [loading, setLoading] = useState(true); // Initialize loading state to true
   const navigateTo = useNavigate();
-
   const { isAuthorized, user } = useContext(Context);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4000/api/v1/job/${id}`, {
-        withCredentials: true,
-      })
-      .then((res) => {
+    const fetchJobDetails = async () => {
+      try {
+        const res = await axios.get(`http://localhost:4000/api/v1/job/${id}`, {
+          withCredentials: true,
+        });
         setJob(res.data.job);
-      })
-      .catch((error) => {
+      } catch (error) {
         navigateTo("/notfound");
-      });
-  }, []);
+      } finally {
+        setLoading(false); // Set loading to false after the API call completes
+      }
+    };
 
-  if (!isAuthorized) {
-    navigateTo("/login");
+    fetchJobDetails();
+  }, [id, navigateTo]);
+
+  useEffect(() => {
+    if (!isAuthorized) {
+      navigateTo("/login");
+    }
+  }, [isAuthorized, navigateTo]);
+
+  if (loading) {
+    return <Loading show={loading} />; // Show the loading spinner if loading
   }
 
   return (
