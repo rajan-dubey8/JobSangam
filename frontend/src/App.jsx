@@ -20,8 +20,36 @@ import PostJob from "./components/Job/PostJob";
 import NotFound from "./components/NotFound/NotFound";
 import MyJobs from "./components/Job/MyJobs";
 
+const privateAxios = axios.create({
+  baseURL: 'http://localhost:4000/api/v1/',
+  // You can add other default configurations here
+});
+
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
+  const [loading,setLoading]=useState(false);
+  useEffect( ()=> {
+    privateAxios.interceptors.request.use(
+      (config)=>{
+        setLoading(true);
+        return config;
+      },
+      (error)=>{
+        return Promise.reject(error);
+      }
+    );
+
+     privateAxios.interceptors.response.use(
+      (config)=>{
+        setLoading(false);
+        return config;
+      },
+      (error)=>{
+        return Promise.reject(error);
+      }
+    );
+  })
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
