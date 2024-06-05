@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Context } from "../../main";
-import "./Dashboard.css"; // Import the CSS file
+
 
 const Dashboard = () => {
   const { user } = useContext(Context);
