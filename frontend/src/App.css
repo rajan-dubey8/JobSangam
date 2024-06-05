@@ -199,6 +199,7 @@ p {
   background: #18191c;
   display: flex;
   justify-content: space-between;
+  max-height: 60px;
   padding: 25px 120px;
   align-items: center;
 }
@@ -1315,7 +1316,7 @@ nav .container {
   min-width: 1500px;
   margin: 0 auto;
   display: flex;
-
+  max-height: 70px;
   justify-content: space-between;
   align-items: center;
 }
@@ -1540,4 +1541,38 @@ nav .hamburger {
   .resume-modal {
     z-index: 11;
   }
+}
+
+
+/* pagination css  */
+ 
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.page-link {
+  color: #333; 
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9; 
+  transition: background-color 0.3s ease, color 0.3s ease;
+} 
+
+.page-link:hover {
+  background-color: #ddd; 
+  color: #000; 
+}
+
+.page-item.active .page-link {
+  background-color: #800080; 
+  color: #fff; 
+  border: 1px solid #800080; 
 }

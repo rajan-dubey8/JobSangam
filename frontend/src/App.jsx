@@ -19,6 +19,7 @@ import MyApplications from "./components/Application/MyApplications";
 import PostJob from "./components/Job/PostJob";
 import NotFound from "./components/NotFound/NotFound";
 import MyJobs from "./components/Job/MyJobs";
+import Dashboard from "./components/Layout/Dashboard";
 
 const privateAxios = axios.create({
   baseURL: 'http://localhost:4000/api/v1/',
@@ -83,6 +84,7 @@ const App = () => {
           <Route path="/job/post" element={<PostJob />} />
           <Route path="/job/me" element={<MyJobs />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
         <Footer />
         <Toaster />
