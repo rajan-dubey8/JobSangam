@@ -1,19 +1,19 @@
-import axios from 'axios';
-import { useContext } from 'react';
-import { Context } from './main';
+import axios from "axios";
+import { useContext } from "react";
+import { Context } from "./main";
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:4000/api/v1',
+  baseURL: "https://jobsangam.onrender.com/api/v1",
   withCredentials: true,
 });
 
 axiosInstance.interceptors.request.use(
-  config => {
+  (config) => {
     const { setLoading } = useContext(Context);
     setLoading(true);
     return config;
   },
-  error => {
+  (error) => {
     const { setLoading } = useContext(Context);
     setLoading(false);
     return Promise.reject(error);
@@ -21,12 +21,12 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.interceptors.response.use(
-  response => {
+  (response) => {
     const { setLoading } = useContext(Context);
     setLoading(false);
     return response;
   },
-  error => {
+  (error) => {
     const { setLoading } = useContext(Context);
     setLoading(false);
     return Promise.reject(error);

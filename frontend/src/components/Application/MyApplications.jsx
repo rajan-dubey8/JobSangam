@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../main";
 import axios from "axios";
@@ -26,9 +25,16 @@ const MyApplications = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = user.role === "Manager"
-          ? await axios.get("http://localhost:4000/api/v1/application/employer/getall", { withCredentials: true })
-          : await axios.get("http://localhost:4000/api/v1/application/jobseeker/getall", { withCredentials: true });
+        const res =
+          user.role === "Manager"
+            ? await axios.get(
+                "https://jobsangam.onrender.com/api/v1/application/employer/getall",
+                { withCredentials: true }
+              )
+            : await axios.get(
+                "https://jobsangam.onrender.com/api/v1/application/jobseeker/getall",
+                { withCredentials: true }
+              );
         setApplications(res.data.applications);
       } catch (error) {
         toast.error(error.response.data.message);
@@ -43,7 +49,10 @@ const MyApplications = () => {
   const deleteApplication = async (id) => {
     setLoading(true);
     try {
-      const res = await axios.delete(`http://localhost:4000/api/v1/application/delete/${id}`, { withCredentials: true });
+      const res = await axios.delete(
+        `https://jobsangam.onrender.com/api/v1/application/delete/${id}`,
+        { withCredentials: true }
+      );
       toast.success(res.data.message);
       setApplications((prevApplications) =>
         prevApplications.filter((application) => application._id !== id)
@@ -69,7 +78,18 @@ const MyApplications = () => {
       <Loading show={loading} />
       {user && user.role === "Job Striver" ? (
         <div className="container">
-          <h1 style={{ fontFamily: 'Arial, sans-serif', fontSize: '2.7rem', color: '#333', fontWeight: 'bold', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', textAlign: 'center' }}>My Applications</h1>
+          <h1
+            style={{
+              fontFamily: "Arial, sans-serif",
+              fontSize: "2.7rem",
+              color: "#333",
+              fontWeight: "bold",
+              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+              textAlign: "center",
+            }}
+          >
+            My Applications
+          </h1>
           {applications.length <= 0 ? (
             <h4>No Applications Found</h4>
           ) : (
@@ -85,7 +105,18 @@ const MyApplications = () => {
         </div>
       ) : (
         <div className="container">
-          <h1 style={{ fontFamily: 'Arial, sans-serif', fontSize: '2.7rem', color: '#333', fontWeight: 'bold', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', textAlign: 'center' }}>Applications From Job Strivers</h1>
+          <h1
+            style={{
+              fontFamily: "Arial, sans-serif",
+              fontSize: "2.7rem",
+              color: "#333",
+              fontWeight: "bold",
+              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+              textAlign: "center",
+            }}
+          >
+            Applications From Job Strivers
+          </h1>
           {applications.length <= 0 ? (
             <h4>No Applications Found</h4>
           ) : (
@@ -110,11 +141,21 @@ const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
   return (
     <div className="job_seeker_card">
       <div className="detail">
-        <p><span>Name:</span> {element.name}</p>
-        <p><span>Email:</span> {element.email}</p>
-        <p><span>Phone:</span> {element.phone}</p>
-        <p><span>Address:</span> {element.address}</p>
-        <p><span>CoverLetter:</span> {element.coverLetter}</p>
+        <p>
+          <span>Name:</span> {element.name}
+        </p>
+        <p>
+          <span>Email:</span> {element.email}
+        </p>
+        <p>
+          <span>Phone:</span> {element.phone}
+        </p>
+        <p>
+          <span>Address:</span> {element.address}
+        </p>
+        <p>
+          <span>CoverLetter:</span> {element.coverLetter}
+        </p>
       </div>
       <div className="resume">
         <img
@@ -136,11 +177,21 @@ const EmployerCard = ({ element, openModal }) => {
   return (
     <div className="job_seeker_card">
       <div className="detail">
-        <p><span>Name:</span> {element.name}</p>
-        <p><span>Email:</span> {element.email}</p>
-        <p><span>Phone:</span> {element.phone}</p>
-        <p><span>Address:</span> {element.address}</p>
-        <p><span>CoverLetter:</span> {element.coverLetter}</p>
+        <p>
+          <span>Name:</span> {element.name}
+        </p>
+        <p>
+          <span>Email:</span> {element.email}
+        </p>
+        <p>
+          <span>Phone:</span> {element.phone}
+        </p>
+        <p>
+          <span>Address:</span> {element.address}
+        </p>
+        <p>
+          <span>CoverLetter:</span> {element.coverLetter}
+        </p>
       </div>
       <div className="resume">
         <img

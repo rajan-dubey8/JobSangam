@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,9 +16,12 @@ const Jobs = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/v1/job/getall", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://jobsangam.onrender.com/api/v1/job/getall",
+          {
+            withCredentials: true,
+          }
+        );
         setJobs(res.data.jobs);
       } catch (error) {
         console.log(error);

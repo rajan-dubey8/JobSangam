@@ -1,5 +1,3 @@
-
-
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import toast from "react-hot-toast";
@@ -41,7 +39,7 @@ const Application = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/api/v1/application/post",
+        "https://jobsangam.onrender.com/api/v1/application/post",
         formData,
         {
           withCredentials: true,
@@ -78,7 +76,17 @@ const Application = () => {
   return (
     <section className="application">
       <div className="container">
-        <h3 style={{ fontFamily: 'Arial, sans-serif', fontSize: '2.5rem', color: '#333', fontWeight: 'bold', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Application Form</h3>
+        <h3
+          style={{
+            fontFamily: "Arial, sans-serif",
+            fontSize: "2.5rem",
+            color: "#333",
+            fontWeight: "bold",
+            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          Application Form
+        </h3>
 
         <form onSubmit={handleApplication}>
           <input

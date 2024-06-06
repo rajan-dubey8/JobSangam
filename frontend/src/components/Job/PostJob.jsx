@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -36,7 +35,7 @@ const PostJob = () => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/v1/job/post",
+        "https://jobsangam.onrender.com/api/v1/job/post",
         fixedSalary.length >= 4
           ? {
               title,
@@ -86,7 +85,17 @@ const PostJob = () => {
   return (
     <div className="job_post page">
       <div className="container">
-        <h1 style={{ fontFamily: 'Arial, sans-serif', fontSize: '2.5rem', color: '#333', fontWeight: 'bold', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Post a new Job</h1>
+        <h1
+          style={{
+            fontFamily: "Arial, sans-serif",
+            fontSize: "2.5rem",
+            color: "#333",
+            fontWeight: "bold",
+            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          Post a new Job
+        </h1>
 
         <form onSubmit={handleJobPost}>
           <div className="wrapper">
@@ -102,14 +111,26 @@ const PostJob = () => {
             >
               <option value="">Select Category</option>
               <option value="Graphics & Design">Graphics & Design</option>
-              <option value="Mobile App Development">Mobile App Development</option>
-              <option value="Frontend Web Development">Frontend Web Development</option>
-              <option value="MERN Stack Development">MERN STACK Development</option>
+              <option value="Mobile App Development">
+                Mobile App Development
+              </option>
+              <option value="Frontend Web Development">
+                Frontend Web Development
+              </option>
+              <option value="MERN Stack Development">
+                MERN STACK Development
+              </option>
               <option value="Account & Finance">Account & Finance</option>
-              <option value="Artificial Intelligence">Artificial Intelligence</option>
+              <option value="Artificial Intelligence">
+                Artificial Intelligence
+              </option>
               <option value="Video Animation">Video Animation</option>
-              <option value="MEAN Stack Development">MEAN STACK Development</option>
-              <option value="MEVN Stack Development">MEVN STACK Development</option>
+              <option value="MEAN Stack Development">
+                MEAN STACK Development
+              </option>
+              <option value="MEVN Stack Development">
+                MEVN STACK Development
+              </option>
               <option value="Data Entry Operator">Data Entry Operator</option>
             </select>
           </div>

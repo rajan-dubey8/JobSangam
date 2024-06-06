@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Context } from "../../main";
 
-
 const Dashboard = () => {
   const { user } = useContext(Context);
   const [userInfo, setUserInfo] = useState({
@@ -15,7 +14,7 @@ const Dashboard = () => {
     const fetchUserInfo = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/v1/user/getuser",
+          "https://jobsangam.onrender.com/api/v1/user/getuser",
           {
             withCredentials: true,
           }

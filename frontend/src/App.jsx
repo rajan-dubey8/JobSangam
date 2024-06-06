@@ -1,7 +1,6 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import "./App.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Context } from "./main";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -22,40 +21,40 @@ import MyJobs from "./components/Job/MyJobs";
 import Dashboard from "./components/Layout/Dashboard";
 
 const privateAxios = axios.create({
-  baseURL: 'http://localhost:4000/api/v1/',
+  baseURL: "https://jobsangam.onrender.com/api/v1/",
   // You can add other default configurations here
 });
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
-  const [loading,setLoading]=useState(false);
-  useEffect( ()=> {
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
     privateAxios.interceptors.request.use(
-      (config)=>{
+      (config) => {
         setLoading(true);
         return config;
       },
-      (error)=>{
+      (error) => {
         return Promise.reject(error);
       }
     );
 
-     privateAxios.interceptors.response.use(
-      (config)=>{
+    privateAxios.interceptors.response.use(
+      (config) => {
         setLoading(false);
         return config;
       },
-      (error)=>{
+      (error) => {
         return Promise.reject(error);
       }
     );
-  })
+  });
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:4000/api/v1/user/getuser",
+          "https://jobsangam.onrender.com/api/v1/user/getuser",
           {
             withCredentials: true,
           }
@@ -68,7 +67,7 @@ const App = () => {
     };
     fetchUser();
   }, [isAuthorized]);
-  
+
   return (
     <>
       <BrowserRouter>
@@ -94,4 +93,3 @@ const App = () => {
 };
 
 export default App;
-

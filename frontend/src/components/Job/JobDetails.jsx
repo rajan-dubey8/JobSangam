@@ -15,9 +15,12 @@ const JobDetails = () => {
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/v1/job/${id}`, {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          `https://jobsangam.onrender.com/api/v1/job/${id}`,
+          {
+            withCredentials: true,
+          }
+        );
         setJob(res.data.job);
       } catch (error) {
         navigateTo("/notfound");

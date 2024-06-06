@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -19,7 +18,7 @@ const MyJobs = () => {
     const fetchJobs = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:4000/api/v1/job/getmyjobs",
+          "https://jobsangam.onrender.com/api/v1/job/getmyjobs",
           { withCredentials: true }
         );
         setMyJobs(data.myJobs);
@@ -54,9 +53,13 @@ const MyJobs = () => {
   const handleUpdateJob = async (jobId) => {
     const updatedJob = myJobs.find((job) => job._id === jobId);
     await axios
-      .put(`http://localhost:4000/api/v1/job/update/${jobId}`, updatedJob, {
-        withCredentials: true,
-      })
+      .put(
+        `https://jobsangam.onrender.com/api/v1/job/update/${jobId}`,
+        updatedJob,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         toast.success(res.data.message);
         setEditingMode(null);
@@ -68,7 +71,7 @@ const MyJobs = () => {
 
   const handleDeleteJob = async (jobId) => {
     await axios
-      .delete(`http://localhost:4000/api/v1/job/delete/${jobId}`, {
+      .delete(`https://jobsangam.onrender.com/api/v1/job/delete/${jobId}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -90,7 +93,17 @@ const MyJobs = () => {
 
   return (
     <div className="myJobs page">
-      <h1 style={{ fontFamily: 'Arial, sans-serif', fontSize: '2.5rem', color: '#333', fontWeight: 'bold', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Jobs Posted By You</h1>
+      <h1
+        style={{
+          fontFamily: "Arial, sans-serif",
+          fontSize: "2.5rem",
+          color: "#333",
+          fontWeight: "bold",
+          textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+        }}
+      >
+        Jobs Posted By You
+      </h1>
       <div className="container">
         {myJobs.length > 0 ? (
           <div className="banner">
@@ -105,7 +118,11 @@ const MyJobs = () => {
                         disabled={editingMode !== element._id}
                         value={element.title}
                         onChange={(e) =>
-                          handleInputChange(element._id, "title", e.target.value)
+                          handleInputChange(
+                            element._id,
+                            "title",
+                            e.target.value
+                          )
                         }
                       />
                     </div>
@@ -116,7 +133,11 @@ const MyJobs = () => {
                         disabled={editingMode !== element._id}
                         value={element.country}
                         onChange={(e) =>
-                          handleInputChange(element._id, "country", e.target.value)
+                          handleInputChange(
+                            element._id,
+                            "country",
+                            e.target.value
+                          )
                         }
                       />
                     </div>
@@ -136,52 +157,88 @@ const MyJobs = () => {
                       <select
                         value={element.category}
                         onChange={(e) =>
-                          handleInputChange(element._id, "category", e.target.value)
+                          handleInputChange(
+                            element._id,
+                            "category",
+                            e.target.value
+                          )
                         }
                         disabled={editingMode !== element._id}
                       >
-                        <option value="Graphics & Design">Graphics & Design</option>
-                        <option value="Mobile App Development">Mobile App Development</option>
-                        <option value="Frontend Web Development">Frontend Web Development</option>
-                        <option value="MERN Stack Development">MERN STACK Development</option>
-                        <option value="Account & Finance">Account & Finance</option>
-                        <option value="Artificial Intelligence">Artificial Intelligence</option>
+                        <option value="Graphics & Design">
+                          Graphics & Design
+                        </option>
+                        <option value="Mobile App Development">
+                          Mobile App Development
+                        </option>
+                        <option value="Frontend Web Development">
+                          Frontend Web Development
+                        </option>
+                        <option value="MERN Stack Development">
+                          MERN STACK Development
+                        </option>
+                        <option value="Account & Finance">
+                          Account & Finance
+                        </option>
+                        <option value="Artificial Intelligence">
+                          Artificial Intelligence
+                        </option>
                         <option value="Video Animation">Video Animation</option>
-                        <option value="MEAN Stack Development">MEAN STACK Development</option>
-                        <option value="MEVN Stack Development">MEVN STACK Development</option>
-                        <option value="Data Entry Operator">Data Entry Operator</option>
+                        <option value="MEAN Stack Development">
+                          MEAN STACK Development
+                        </option>
+                        <option value="MEVN Stack Development">
+                          MEVN STACK Development
+                        </option>
+                        <option value="Data Entry Operator">
+                          Data Entry Operator
+                        </option>
                       </select>
                     </div>
                     <div>
-                      <span>Salary: {element.fixedSalary ? (
-                        <input
-                          type="number"
-                          disabled={editingMode !== element._id}
-                          value={element.fixedSalary}
-                          onChange={(e) =>
-                            handleInputChange(element._id, "fixedSalary", e.target.value)
-                          }
-                        />
-                      ) : (
-                        <div>
+                      <span>
+                        Salary:{" "}
+                        {element.fixedSalary ? (
                           <input
                             type="number"
                             disabled={editingMode !== element._id}
-                            value={element.salaryFrom}
+                            value={element.fixedSalary}
                             onChange={(e) =>
-                              handleInputChange(element._id, "salaryFrom", e.target.value)
+                              handleInputChange(
+                                element._id,
+                                "fixedSalary",
+                                e.target.value
+                              )
                             }
                           />
-                          <input
-                            type="number"
-                            disabled={editingMode !== element._id}
-                            value={element.salaryTo}
-                            onChange={(e) =>
-                              handleInputChange(element._id, "salaryTo", e.target.value)
-                            }
-                          />
-                        </div>
-                      )}
+                        ) : (
+                          <div>
+                            <input
+                              type="number"
+                              disabled={editingMode !== element._id}
+                              value={element.salaryFrom}
+                              onChange={(e) =>
+                                handleInputChange(
+                                  element._id,
+                                  "salaryFrom",
+                                  e.target.value
+                                )
+                              }
+                            />
+                            <input
+                              type="number"
+                              disabled={editingMode !== element._id}
+                              value={element.salaryTo}
+                              onChange={(e) =>
+                                handleInputChange(
+                                  element._id,
+                                  "salaryTo",
+                                  e.target.value
+                                )
+                              }
+                            />
+                          </div>
+                        )}
                       </span>
                     </div>
                     <div>
@@ -189,7 +246,11 @@ const MyJobs = () => {
                       <select
                         value={element.expired}
                         onChange={(e) =>
-                          handleInputChange(element._id, "expired", e.target.value)
+                          handleInputChange(
+                            element._id,
+                            "expired",
+                            e.target.value
+                          )
                         }
                         disabled={editingMode !== element._id}
                       >
@@ -206,7 +267,11 @@ const MyJobs = () => {
                         value={element.description}
                         disabled={editingMode !== element._id}
                         onChange={(e) =>
-                          handleInputChange(element._id, "description", e.target.value)
+                          handleInputChange(
+                            element._id,
+                            "description",
+                            e.target.value
+                          )
                         }
                       />
                     </div>
@@ -217,7 +282,11 @@ const MyJobs = () => {
                         rows={5}
                         disabled={editingMode !== element._id}
                         onChange={(e) =>
-                          handleInputChange(element._id, "location", e.target.value)
+                          handleInputChange(
+                            element._id,
+                            "location",
+                            e.target.value
+                          )
                         }
                       />
                     </div>
@@ -227,20 +296,32 @@ const MyJobs = () => {
                   <div className="edit_btn_wrapper">
                     {editingMode === element._id ? (
                       <>
-                        <button onClick={() => handleUpdateJob(element._id)} className="check_btn">
+                        <button
+                          onClick={() => handleUpdateJob(element._id)}
+                          className="check_btn"
+                        >
                           <FaCheck />
                         </button>
-                        <button onClick={() => handleDisableEdit()} className="cross_btn">
+                        <button
+                          onClick={() => handleDisableEdit()}
+                          className="cross_btn"
+                        >
                           <RxCross2 />
                         </button>
                       </>
                     ) : (
-                      <button onClick={() => handleEnableEdit(element._id)} className="edit_btn">
+                      <button
+                        onClick={() => handleEnableEdit(element._id)}
+                        className="edit_btn"
+                      >
                         Edit
                       </button>
                     )}
                   </div>
-                  <button onClick={() => handleDeleteJob(element._id)} className="delete_btn">
+                  <button
+                    onClick={() => handleDeleteJob(element._id)}
+                    className="delete_btn"
+                  >
                     Delete
                   </button>
                 </div>
@@ -248,7 +329,9 @@ const MyJobs = () => {
             ))}
           </div>
         ) : (
-          <p>You've not posted any job or may be you deleted all of your jobs!</p>
+          <p>
+            You've not posted any job or may be you deleted all of your jobs!
+          </p>
         )}
       </div>
     </div>
@@ -256,7 +339,3 @@ const MyJobs = () => {
 };
 
 export default MyJobs;
-
-
-
-

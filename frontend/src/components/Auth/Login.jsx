@@ -1,5 +1,3 @@
-
-
 import React, { useContext, useState } from "react";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLock2Fill } from "react-icons/ri";
@@ -24,7 +22,8 @@ const Login = () => {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/api/v1/user/login",
+        // "https://jobsangam.onrender.com/api/v1/user/login",
+        "https://jobsangam.onrender.com/api/v1/user/login",
         { email, password, role },
         {
           headers: {

@@ -1,4 +1,3 @@
-
 import React, { useContext, useState } from "react";
 import { Context } from "../../main";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,7 +16,7 @@ const Navbar = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/v1/user/logout",
+        "https://jobsangam.onrender.com/api/v1/user/logout",
         {
           withCredentials: true,
         }
@@ -102,10 +101,6 @@ const Navbar = () => {
 
 export default Navbar;
 
-
-
-
-
 // import React, { useContext, useState } from "react";
 // import { Context } from "../../main";
 // import { Link, useNavigate } from "react-router-dom";
@@ -124,7 +119,7 @@ export default Navbar;
 //     setLoading(true);
 //     try {
 //       const response = await axios.get(
-//         "http://localhost:4000/api/v1/user/logout",
+//         "https://jobsangam.onrender.com/api/v1/user/logout",
 //         {
 //           withCredentials: true,
 //         }
@@ -198,4 +193,3 @@ export default Navbar;
 // };
 
 // export default Navbar;
-
