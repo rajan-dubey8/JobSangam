@@ -1,5 +1,0 @@
-services:
-  - type: web
-    name: jobsangam-backend
-    env: docker
-    dockerfilePath: ./Dockerfile
