@@ -43,17 +43,30 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   sendToken(user, 201, res, "User Logged In!");
 });
 
+// export const logout = catchAsyncErrors(async (req, res, next) => {
+//   res
+//     .status(201)
+//     .cookie("token", "", {    //cookies delete kar di 
+//       httpOnly: true,
+//       expires: new Date(Date.now()),
+//     })
+//     .json({
+//       success: true,
+//       message: "Logged Out Successfully.",
+//     });
+// });
 export const logout = catchAsyncErrors(async (req, res, next) => {
-  res
-    .status(201)
-    .cookie("token", "", {    //cookies delete kar di 
-      httpOnly: true,
-      expires: new Date(Date.now()),
-    })
-    .json({
-      success: true,
-      message: "Logged Out Successfully.",
-    });
+  res.cookie("token", "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production", // Ensure secure attribute is set in production
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    expires: new Date(0), // Set the cookie to expire immediately
+  });
+
+  res.status(200).json({
+    success: true,
+    message: "Logged Out Successfully.",
+  });
 });
 
 
