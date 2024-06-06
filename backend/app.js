@@ -15,7 +15,7 @@ config({ path: "./config/config.env" });
 app.use(
   cors({
     origin: [process.env.FRONTEND_URL],    // linking backend and frontend here 
-    method: ["GET", "POST", "DELETE", "PUT"],  // can link multiple frontend to single backend 
+    methods: ["GET", "POST", "DELETE", "PUT"],  // can link multiple frontend to single backend 
     credentials: true,
   })
 );

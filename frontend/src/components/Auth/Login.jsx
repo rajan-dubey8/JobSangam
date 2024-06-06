@@ -22,7 +22,6 @@ const Login = () => {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        // "https://jobsangam.onrender.com/api/v1/user/login",
         "https://jobsangam.onrender.com/api/v1/user/login",
         { email, password, role },
         {
